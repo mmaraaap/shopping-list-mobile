@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-// TODO: Impor drawer yang sudah dibuat sebelumnya
-import 'package:shopping_list/widgets/left_drawer.dart';
+import 'package:shopping_list/widgets/left_drawer.dart'; // Impor drawer yang sudah dibuat sebelumnya
 
 class ShopFormPage extends StatefulWidget {
-  const ShopFormPage({super.key});
+  const ShopFormPage({Key? key});
 
   @override
   State<ShopFormPage> createState() => _ShopFormPageState();
@@ -14,6 +13,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
   String _name = "";
   int _price = 0;
   String _description = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,136 +26,134 @@ class _ShopFormPageState extends State<ShopFormPage> {
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
-      drawer: const LeftDrawer(),
-      // TODO: Tambahkan drawer yang sudah dibuat di sini
+      drawer: const LeftDrawer(), // Tambahkan drawer yang sudah dibuat di sini
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Nama",
-                  labelText: "Nama",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                ),
-                onChanged: (String? value) {
-                  setState(() {
-                    // TODO: Tambahkan variabel yang sesuai
-                    _name = value!;
-                  });
-                },
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return "Deskripsi tidak boleh kosong!";
-                  }
-                  return null;
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Harga",
-                  labelText: "Harga",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                ),
-                // TODO: Tambahkan variabel yang sesuai
-                onChanged: (String? value) {
-                  setState(() {
-                    _price = int.parse(value!);
-                  });
-                },
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return "Harga tidak boleh kosong!";
-                  }
-                  if (int.tryParse(value) == null) {
-                    return "Harga harus berupa angka!";
-                  }
-                  return null;
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Deskripsi",
-                  labelText: "Deskripsi",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                ),
-                onChanged: (String? value) {
-                  setState(() {
-                    // TODO: Tambahkan variabel yang sesuai
-                    _description = value!;
-                  });
-                },
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return "Deskripsi tidak boleh kosong!";
-                  }
-                  return null;
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.indigo),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Nama Produk",
+                    labelText: "Nama Produk",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
                   ),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text('Produk berhasil tersimpan'),
-                            content: SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Nama: $_name'),
-                                  Text('Harga: $_price'),
-                                  Text('Deskripsi: $_description'),
-                                  // TODO: Munculkan value-value lainnya
-                                ],
-                              ),
-                            ),
-                            actions: [
-                              TextButton(
-                                child: const Text('OK'),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-                    _formKey.currentState!.reset();
+                  onChanged: (String? value) {
+                    setState(() {
+                      _name = value!;
+                    });
                   },
-                  child: const Text(
-                    "Save",
-                    style: TextStyle(color: Colors.white),
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Nama tidak boleh kosong!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Harga",
+                    labelText: "Harga",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _price = int.parse(value!);
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Harga tidak boleh kosong!";
+                    }
+                    if (int.tryParse(value) == null) {
+                      return "Harga harus berupa angka!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Deskripsi",
+                    labelText: "Deskripsi",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _description = value!;
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Deskripsi tidak boleh kosong!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.indigo),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Produk berhasil tersimpan'),
+                              content: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Nama: $_name'),
+                                    Text('Harga: $_price'),
+                                    Text('Deskripsi: $_description'),
+                                    // Tambahkan value lainnya jika ada
+                                  ],
+                                ),
+                              ),
+                              actions: [
+                                TextButton(
+                                  child: const Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                        _formKey.currentState!.reset();
+                      }
+                    },
+                    child: const Text(
+                      "Save",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ]),
+            ],
+          ),
         ),
       ),
     );
