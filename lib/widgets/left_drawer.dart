@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:shopping_list/screens/menu.dart';
 import 'package:shopping_list/screens/shoplist_form.dart';
+import 'package:shopping_list/screens/list_product.dart';
+
 // TODO: Impor halaman ShopFormPage jika sudah dibuat
 
 class LeftDrawer extends StatelessWidget {
@@ -31,13 +32,12 @@ class LeftDrawer extends StatelessWidget {
                 Text(
                   "Catat seluruh keperluan belanjamu di sini!",
                   // TODO: Tambahkan gaya teks dengan center alignment, font ukuran 15, warna putih, dan weight biasa
-                  textAlign: TextAlign.center, // Center alignment
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                  fontSize: 15, // Font size 15
-                  color: Colors.white, // Text color white
-                  fontWeight: FontWeight.normal, // Normal font weight
+                    fontSize: 15, // Ubah ukuran font menjadi 15
+                    color: Colors.white,
+                  ),
                 ),
-              ),
               ],
             ),
           ),
@@ -63,6 +63,17 @@ class LeftDrawer extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => ShopFormPage(),
                   ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.shopping_basket),
+            title: const Text('Daftar Produk'),
+            onTap: () {
+              // Route menu ke halaman produk
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProductPage()),
+              );
             },
           ),
         ],
